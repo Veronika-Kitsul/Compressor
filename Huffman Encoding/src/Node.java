@@ -1,0 +1,19 @@
+
+/*public class Node<E> {
+
+	public int priority;
+	public E info;
+	
+	public Node(int p, E i) 
+	{
+		//priority;
+	}
+		
+	public String toString()
+	{
+		
+	}
+}*/
+	
+
+
