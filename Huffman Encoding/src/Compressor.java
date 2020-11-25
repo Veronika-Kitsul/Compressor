@@ -6,10 +6,8 @@ import java.io.IOException;
 
 public class Compressor 
 {
-	// every character
+	int value = 1;
 	char character;
-	int i = 0;
-	int value;
 	
 	public Compressor() throws IOException
 	{
@@ -19,37 +17,33 @@ public class Compressor
 		// file we read from
 		File file = new File("helloWorld.txt");
 		
+		// file reader
 		FileReader inputReader = new FileReader(file);
 		
-			/*for (char character = (char) inputReader.read(); inputReader.read() != -1; character = (char) inputReader.read())
-			{
-				
-				character = (char) inputReader.read();
-
-			}*/
-		
-		
-		
-		
-		while (inputReader.read() != -1)
+		// reading through the file
+		int i;
+		while ((i = inputReader.read())!= -1)
 		{
-			character = (char) inputReader.read();
-			//frequencyMap.put(character, value);
-			System.out.println(character);
+			// if we already have this in the map - increase frequency 
+			character = (char) i;
+			if (frequencyMap.containsKey(character))
+			{
+				int fre = frequencyMap.get(character);
+				frequencyMap.put(character, fre + 1);
+			}
+			// if the value is not in the map - add it
+			else 
+			{
+				frequencyMap.put(character, value);
+			}
 		}
 		System.out.println(frequencyMap);
-		
-		/*for (int i = 0; i < 12; i++)
-		{
-			
-		}*/
 	}
 	
 	
 		
-		public static void main(String[] args) throws IOException 
-		{
-			new Compressor();
-		}
-
+	public static void main(String[] args) throws IOException 
+	{
+		new Compressor();
+	}
 }
