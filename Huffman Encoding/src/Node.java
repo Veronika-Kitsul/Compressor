@@ -6,7 +6,6 @@ public class Node<E> {
 	
 	public Node(int p, E i) 
 	{
-		// priority
 		this.priority = p;
 		this.info = i;
 	}

@@ -64,6 +64,8 @@ public class PriorityQueue<E> {
 	public static void main(String[] args)
 	{
 		PriorityQueue<Character> myQ = new PriorityQueue<Character>();
+		myQ.add(new Node<Character>(3,'k'));
+		System.out.println(myQ);
 		
 	}
 	
