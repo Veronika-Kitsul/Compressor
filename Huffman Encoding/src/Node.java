@@ -6,7 +6,9 @@ public class Node<E> {
 	
 	public Node(int p, E i) 
 	{
-		//priority;
+		// priority
+		this.priority = p;
+		this.info = i;
 	}
 		
 	public String toString()
