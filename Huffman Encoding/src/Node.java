@@ -1,5 +1,5 @@
 
-/*public class Node<E> {
+public class Node<E> {
 
 	public int priority;
 	public E info;
@@ -11,9 +11,9 @@
 		
 	public String toString()
 	{
-		
+		return null;
 	}
-}*/
+}
 	
 
 
