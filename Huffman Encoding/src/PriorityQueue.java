@@ -64,10 +64,26 @@ public class PriorityQueue<E> {
 	public static void main(String[] args)
 	{
 		PriorityQueue<Character> myQ = new PriorityQueue<Character>();
+		myQ.add(new Node(15,'k'));
+		myQ.add(new Node(1,'d'));
 		myQ.add(new Node(3,'k'));
 		myQ.add(new Node(1,'d'));
+		myQ.add(new Node(3,'k'));
+		myQ.add(new Node(1,'d'));
+		myQ.add(new Node(2,'k'));
+		myQ.add(new Node(8,'d'));
+		myQ.add(new Node(9,'t'));
+		myQ.add(new Node(0,'d'));
+		myQ.add(new Node(3,'k'));
+		myQ.add(new Node(98,'d'));
+		myQ.add(new Node(6,'k'));
+		myQ.add(new Node(5,'d'));
+		myQ.add(new Node(3,'k'));
 		System.out.println(myQ);
-		
+		myQ.pop();
+		System.out.println(myQ);
+		myQ.pop();
+		System.out.println(myQ);
 	}
 	
 }

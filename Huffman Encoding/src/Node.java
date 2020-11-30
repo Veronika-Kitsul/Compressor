@@ -12,7 +12,7 @@ public class Node<E> {
 		
 	public String toString()
 	{
-		return null;
+		return (priority + " - " + info);
 	}
 }
 	
