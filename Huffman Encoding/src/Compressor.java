@@ -37,10 +37,21 @@ public class Compressor
 				frequencyMap.put(character, value);
 			}
 		}
-		System.out.println(frequencyMap);
+		
+		
+		// take it all into the priority Queue
+		PriorityQueue<Branch<Character>> queue = new PriorityQueue<Branch<Character>>();
+		for (Character key : frequencyMap.keySet())
+		{
+			queue.add(frequencyMap.get(key), new Branch<Character>(key));	
+		}
+		System.out.println(queue);
+		
+		
+		
+		//take Branch type into the priority Queue -- so need to build tree starting from here??
+		// add branch types AS i build the tree or BEFORE i build it??
 	}
-	
-	
 		
 	public static void main(String[] args) throws IOException 
 	{

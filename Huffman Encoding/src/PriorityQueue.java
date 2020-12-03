@@ -14,20 +14,25 @@ public class PriorityQueue<E> {
 		return queue.toString();
 	}
 
-	public void add(Node<E> newNode)
+	public void add(int p, E i)
 	{
+		int priority = p;
+		E info = i;
+		
+		Node element = new Node<E>(priority, info); 
+		
 		if (queue.size() == 0)
 		{
-			queue.add(newNode);
+			queue.add(element);
 		}
 		
-		else if (queue.get(0).priority < newNode.priority)
+		else if (queue.get(0).priority < element.priority)
 		{
-			queue.add(0, newNode);
+			queue.add(0, element);
 		}
-		else if (queue.get(queue.size()-1).priority > newNode.priority)
+		else if (queue.get(queue.size()-1).priority > element.priority)
 		{
-			queue.add(newNode);
+			queue.add(element);
 		}
 		
 		//binary search for correct location
@@ -38,7 +43,7 @@ public class PriorityQueue<E> {
 			{
 				Node<E> midPoint = queue.get((start+end)/2);
 				
-				if (midPoint.priority > newNode.priority)
+				if (midPoint.priority > element.priority)
 				{
 					start = (start+end)/2 + 1;
 				}
@@ -47,7 +52,7 @@ public class PriorityQueue<E> {
 					end = (start+end)/2;
 				}
 			}
-			queue.add(start, newNode);
+			queue.add(start, element);
 		}
 	}
 	
@@ -64,21 +69,11 @@ public class PriorityQueue<E> {
 	public static void main(String[] args)
 	{
 		PriorityQueue<Character> myQ = new PriorityQueue<Character>();
-		myQ.add(new Node(15,'k'));
-		myQ.add(new Node(1,'d'));
-		myQ.add(new Node(3,'k'));
-		myQ.add(new Node(1,'d'));
-		myQ.add(new Node(3,'k'));
-		myQ.add(new Node(1,'d'));
-		myQ.add(new Node(2,'k'));
-		myQ.add(new Node(8,'d'));
-		myQ.add(new Node(9,'t'));
-		myQ.add(new Node(0,'d'));
-		myQ.add(new Node(3,'k'));
-		myQ.add(new Node(98,'d'));
-		myQ.add(new Node(6,'k'));
-		myQ.add(new Node(5,'d'));
-		myQ.add(new Node(3,'k'));
+		myQ.add(15,'k');
+		myQ.add(98,'d');
+		myQ.add(6,'k');
+		myQ.add(5,'d');
+		myQ.add(3,'k');
 		System.out.println(myQ);
 		myQ.pop();
 		System.out.println(myQ);
