@@ -69,16 +69,6 @@ public class PriorityQueue<E> {
 	public static void main(String[] args)
 	{
 		PriorityQueue<Character> myQ = new PriorityQueue<Character>();
-		myQ.add(15,'k');
-		myQ.add(98,'d');
-		myQ.add(6,'k');
-		myQ.add(5,'d');
-		myQ.add(3,'k');
-		System.out.println(myQ);
-		myQ.pop();
-		System.out.println(myQ);
-		myQ.pop();
-		System.out.println(myQ);
 	}
 	
 }

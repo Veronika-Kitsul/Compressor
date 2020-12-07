@@ -48,9 +48,10 @@ public class Compressor
 		System.out.println(queue);
 		
 		
+		// start building tree - issues in priority queue with having nodes previously
+		Branch first = new Branch(queue.pop(), queue.pop());
 		
-		//take Branch type into the priority Queue -- so need to build tree starting from here??
-		// add branch types AS i build the tree or BEFORE i build it??
+		
 	}
 		
 	public static void main(String[] args) throws IOException 
