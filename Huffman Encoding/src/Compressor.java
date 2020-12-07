@@ -49,9 +49,11 @@ public class Compressor
 		
 		
 		// start building tree - issues in priority queue with having nodes previously
-		Branch first = new Branch(queue.pop(), queue.pop());
-		
-		
+		for (int j = 0; j < queue.size(); j++)
+		{
+			Branch first = new Branch(queue.pop(), queue.pop());
+			queue.add(//here i need the priority of two of the elements from the queue but how do I take it?, first);
+		}
 	}
 		
 	public static void main(String[] args) throws IOException 
