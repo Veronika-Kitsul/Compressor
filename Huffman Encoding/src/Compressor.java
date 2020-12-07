@@ -51,8 +51,12 @@ public class Compressor
 		// start building tree - issues in priority queue with having nodes previously
 		for (int j = 0; j < queue.size(); j++)
 		{
-			Branch first = new Branch(queue.pop(), queue.pop());
-			queue.add(//here i need the priority of two of the elements from the queue but how do I take it?, first);
+			Node node1 = queue.pop();
+			int k = node1.priority;
+			Node node2 = queue.pop();
+			k = k + node2.priority;
+			Branch first = new Branch(node1, node2);
+			queue.add(k, first);
 		}
 	}
 		
