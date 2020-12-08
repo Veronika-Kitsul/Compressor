@@ -58,12 +58,13 @@ public class Compressor
 			Branch<Character> first = new Branch<Character>(node1.info, node2.info);
 			queue.add(k, first);
 		}
-		recursion(queue);
+		Node<Branch<Character>> tree = queue.pop();
+		recursion(tree);
 	}
 	
 	
 	
-	public void recursion(PriorityQueue<Branch<Character>> queue)
+	public void recursion(Branch<Character> tree)
 	{
 		HashMap binaryCodes = new HashMap();
 		// key - characters
@@ -71,14 +72,15 @@ public class Compressor
 			String value;
 
 		// base case - leaf
-		if (isLeaf = true)
+		if (tree.isLeaf = true)
 		{
-			binaryCodes.put(key, value);
+			binaryCodes.put(tree.info, value);
 		}
 		else 
 		{
-			value for left = value + "0";
-			value for right = value + "1";
+			if ()
+			tree.left = value + "0";
+			tree.right = value + "1";
 		}
 		recursion();
 	}
