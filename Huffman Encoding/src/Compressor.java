@@ -48,14 +48,14 @@ public class Compressor
 		System.out.println(queue);
 		
 		
-		// start building tree - issues in priority queue with having nodes previously
-		for (int j = 0; j < queue.size(); j++)
+		// start building tree - issues with Nodes and Branches
+		while (queue.size() > 1)
 		{
-			Node node1 = queue.pop();
+			Node<Branch<Character>> node1 = queue.pop();
 			int k = node1.priority;
-			Node node2 = queue.pop();
+			Node<Branch<Character>> node2 = queue.pop();
 			k = k + node2.priority;
-			Branch first = new Branch(node1, node2);
+			Branch<Character> first = new Branch<Character>(node1, node2);
 			queue.add(k, first);
 		}
 	}
