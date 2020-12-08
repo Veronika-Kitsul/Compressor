@@ -6,10 +6,10 @@ public class Branch<T>
 	Branch<T> right;
 	T info;
 	
-	public Branch(Branch<T> child1, Branch<T> child2) 
+	public Branch(Branch<T> node1, Branch<T> node2) 
 	{	
-		left = child1;
-		right = child2;
+		left = node1;
+		right = node2;
 		isLeaf = false;
 	}
 	

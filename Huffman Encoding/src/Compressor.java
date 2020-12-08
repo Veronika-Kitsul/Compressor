@@ -55,9 +55,32 @@ public class Compressor
 			int k = node1.priority;
 			Node<Branch<Character>> node2 = queue.pop();
 			k = k + node2.priority;
-			Branch<Character> first = new Branch<Character>(node1, node2);
+			Branch<Character> first = new Branch<Character>(node1.info, node2.info);
 			queue.add(k, first);
 		}
+		recursion(queue);
+	}
+	
+	
+	
+	public void recursion(PriorityQueue<Branch<Character>> queue)
+	{
+		HashMap binaryCodes = new HashMap();
+		// key - characters
+		// value - binary codes 
+			String value;
+
+		// base case - leaf
+		if (isLeaf = true)
+		{
+			binaryCodes.put(key, value);
+		}
+		else 
+		{
+			value for left = value + "0";
+			value for right = value + "1";
+		}
+		recursion();
 	}
 		
 	public static void main(String[] args) throws IOException 
