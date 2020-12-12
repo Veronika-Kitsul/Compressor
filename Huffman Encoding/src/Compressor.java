@@ -8,6 +8,7 @@ public class Compressor
 {
 	int value = 1;
 	char character;
+	HashMap binaryCodes = new HashMap();
 	
 	public Compressor() throws IOException
 	{
@@ -58,33 +59,56 @@ public class Compressor
 			Branch<Character> first = new Branch<Character>(node1.info, node2.info);
 			queue.add(k, first);
 		}
-		Node<Branch<Character>> tree = queue.pop();
-		recursion(tree);
+		Node<Branch<Character>> node = queue.pop();
+		Branch<Character> tree = node.info;
+		recursion(tree, "");
+		System.out.println(binaryCodes);
+		
+		
+		while ((i = inputReader.read())!= -1)
+		{
+			// binary code of each character 
+			String code = (String) binaryCodes.get(character);
+			
+			BufferedBitWriter cipher = new BufferedBitWriter(code);
+			char LastDigit = code.charAt(code.length() - 1);
+			code = code.substring(0, code.length());
+			
+// here -- i initialize bit because it gives me error if i don't but i know i definitely don't have to initialize it as false
+			boolean bit = false;
+			if ((int) LastDigit == 0)
+			{
+				bit = false;
+			}
+			else if ((int) LastDigit == 1)
+			{
+				bit = true;
+			}
+			
+			cipher.writeBit(bit);
+// do I have to create a file where i will write this codes? 
+		}
 	}
 	
 	
 	
-	public void recursion(Branch<Character> tree)
+	public void recursion(Branch<Character> tree, String value)
 	{
-		HashMap binaryCodes = new HashMap();
 		// key - characters
 		// value - binary codes 
-			String value;
 
 		// base case - leaf
-		if (tree.isLeaf = true)
+		if (tree.isLeaf == true)
 		{
 			binaryCodes.put(tree.info, value);
 		}
 		else 
 		{
-			if ()
-			tree.left = value + "0";
-			tree.right = value + "1";
+			recursion(tree.left, value + "0");
+			recursion(tree.right, value + "1");
 		}
-		recursion();
 	}
-		
+	
 	public static void main(String[] args) throws IOException 
 	{
 		new Compressor();
