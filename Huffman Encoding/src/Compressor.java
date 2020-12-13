@@ -1,4 +1,5 @@
 import java.io.InputStreamReader;
+import java.io.RandomAccessFile;
 import java.util.HashMap;
 import java.io.File;
 import java.io.FileReader;
@@ -65,28 +66,30 @@ public class Compressor
 		System.out.println(binaryCodes);
 		
 		
+		BufferedBitWriter writer = new BufferedBitWriter("compressed");
 		while ((i = inputReader.read())!= -1)
 		{
-			// binary code of each character 
+			// read character, take binary code for this character
+			character = (char) i;
 			String code = (String) binaryCodes.get(character);
+			System.out.println(code);
 			
-			BufferedBitWriter cipher = new BufferedBitWriter(code);
-			char LastDigit = code.charAt(code.length() - 1);
-			code = code.substring(0, code.length());
-			
-// here -- i initialize bit because it gives me error if i don't but i know i definitely don't have to initialize it as false
-			boolean bit = false;
-			if ((int) LastDigit == 0)
+			for (int j = 0; j < code.length(); j++)
 			{
-				bit = false;
+				char LastDigit = code.charAt(code.length() - 1);
+				
+				boolean bit = false;
+				if (LastDigit == '0')
+				{
+					bit = false;
+				}
+				else if (LastDigit == '1')
+				{
+					bit = true;
+				}
+				writer.writeBit(bit);
+				code = code.substring(0, code.length());
 			}
-			else if ((int) LastDigit == 1)
-			{
-				bit = true;
-			}
-			
-			cipher.writeBit(bit);
-// do I have to create a file where i will write this codes? 
 		}
 	}
 	
