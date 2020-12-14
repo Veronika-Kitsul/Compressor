@@ -66,18 +66,17 @@ public class Compressor
 		System.out.println(binaryCodes);
 		
 		
+		FileReader reader = new FileReader(file);
 		BufferedBitWriter writer = new BufferedBitWriter("compressed");
-		while ((i = inputReader.read())!= -1)
+		while ((i = reader.read())!= -1)
 		{
 			// read character, take binary code for this character
 			character = (char) i;
 			String code = (String) binaryCodes.get(character);
-			System.out.println(code);
 			
 			for (int j = 0; j < code.length(); j++)
 			{
 				char LastDigit = code.charAt(code.length() - 1);
-				
 				boolean bit = false;
 				if (LastDigit == '0')
 				{
@@ -87,6 +86,7 @@ public class Compressor
 				{
 					bit = true;
 				}
+				// testing works up until here where it is supposed to write bits into file
 				writer.writeBit(bit);
 				code = code.substring(0, code.length());
 			}
