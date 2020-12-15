@@ -1,8 +1,13 @@
 import java.io.InputStreamReader;
 import java.io.RandomAccessFile;
 import java.util.HashMap;
+import java.io.BufferedOutputStream;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;  
 
 public class Compressor 
@@ -74,6 +79,7 @@ public class Compressor
 			character = (char) i;
 			String code = (String) binaryCodes.get(character);
 			
+			
 			for (int j = 0; j < code.length(); j++)
 			{
 				char LastDigit = code.charAt(code.length() - 1);
@@ -86,16 +92,17 @@ public class Compressor
 				{
 					bit = true;
 				}
+				
 				// testing works up until here where it is supposed to write bits into file
 				writer.writeBit(bit);
-				code = code.substring(0, code.length());
+				System.out.println(bit);
 			}
 		}
 	}
 	
 	
 	
-	public void recursion(Branch<Character> tree, String value)
+	public void recursion(Branch<Character> tree, String value) throws IOException
 	{
 		// key - characters
 		// value - binary codes 
@@ -104,12 +111,20 @@ public class Compressor
 		if (tree.isLeaf == true)
 		{
 			binaryCodes.put(tree.info, value);
+			decompression(tree.info, value);
 		}
 		else 
 		{
 			recursion(tree.left, value + "0");
 			recursion(tree.right, value + "1");
 		}
+	}
+	
+	//not working
+	public void decompression(Character info, String value) throws IOException
+	{
+		 BufferedWriter output = new BufferedWriter(new FileWriter("Codes"));
+		 output.write(info + "=" + value );
 	}
 	
 	public static void main(String[] args) throws IOException 
