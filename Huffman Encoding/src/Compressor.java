@@ -14,7 +14,7 @@ public class Compressor
 {
 	int value = 1;
 	char character;
-	HashMap binaryCodes = new HashMap();
+	HashMap<Character, String> binaryCodes = new HashMap();
 	
 	public Compressor() throws IOException
 	{
