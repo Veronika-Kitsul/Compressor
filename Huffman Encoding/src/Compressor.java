@@ -95,9 +95,10 @@ public class Compressor
 				
 				// testing works up until here where it is supposed to write bits into file
 				writer.writeBit(bit);
-				System.out.println(bit);
 			}
 		}
+		writer.close();
+		reader.close();
 	}
 	
 	
@@ -110,8 +111,8 @@ public class Compressor
 		// base case - leaf
 		if (tree.isLeaf == true)
 		{
-			binaryCodes.put(tree.info, value);
 			decompression(tree.info, value);
+			binaryCodes.put(tree.info, value);
 		}
 		else 
 		{
@@ -120,11 +121,13 @@ public class Compressor
 		}
 	}
 	
-	//not working
+	//working
 	public void decompression(Character info, String value) throws IOException
 	{
 		 BufferedWriter output = new BufferedWriter(new FileWriter("Codes"));
-		 output.write(info + "=" + value );
+		 output.write(info + "\n");
+		 output.write(value + "\n");
+		 output.close();
 	}
 	
 	public static void main(String[] args) throws IOException 
