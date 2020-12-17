@@ -68,6 +68,7 @@ public class Compressor
 		Node<Branch<Character>> node = queue.pop();
 		Branch<Character> tree = node.info;
 		recursion(tree, "");
+		output.close();
 		System.out.println(binaryCodes);
 		
 		
@@ -101,7 +102,7 @@ public class Compressor
 		reader.close();
 	}
 	
-	
+	BufferedWriter output = new BufferedWriter(new FileWriter("Codes"));
 	
 	public void recursion(Branch<Character> tree, String value) throws IOException
 	{
@@ -121,13 +122,12 @@ public class Compressor
 		}
 	}
 	
-	//working
+	
+	// working
 	public void decompression(Character info, String value) throws IOException
 	{
-		 BufferedWriter output = new BufferedWriter(new FileWriter("Codes"));
-		 output.write(info + "\n");
 		 output.write(value + "\n");
-		 output.close();
+		 output.write(info + "\n");
 	}
 	
 	public static void main(String[] args) throws IOException 
