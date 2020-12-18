@@ -6,6 +6,7 @@ public class Branch<T>
 	Branch<T> right;
 	T info;
 	
+	// branch that holds two others
 	public Branch(Branch<T> node1, Branch<T> node2) 
 	{	
 		left = node1;
@@ -13,6 +14,7 @@ public class Branch<T>
 		isLeaf = false;
 	}
 	
+	// leaf branch
 	public Branch(T info)
 	{
 		this.info = info;

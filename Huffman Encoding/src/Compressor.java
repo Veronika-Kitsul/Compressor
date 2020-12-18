@@ -55,24 +55,34 @@ public class Compressor
 		System.out.println(queue);
 		
 		
-		// start building tree - issues with Nodes and Branches
+		// start building binary tree of codes and their frequencies
+		// unless there is one element left in the queue 
+		// this one element is our tree
 		while (queue.size() > 1)
 		{
+			// sum up priorities of two last nodes in the queue
 			Node<Branch<Character>> node1 = queue.pop();
 			int k = node1.priority;
 			Node<Branch<Character>> node2 = queue.pop();
 			k = k + node2.priority;
+			// create a new branch out of this two elements and add back to the queue
 			Branch<Character> first = new Branch<Character>(node1.info, node2.info);
 			queue.add(k, first);
 		}
+		
+		// take the tree out of the priority queue
 		Node<Branch<Character>> node = queue.pop();
 		Branch<Character> tree = node.info;
+		
+		// start recursion to decompose the tree
 		recursion(tree, "");
+		// close file writer for writing binary codes into a separate file
 		output.close();
-		System.out.println(binaryCodes);
 		
-		
+		// new file reader 
 		FileReader reader = new FileReader(file);
+		
+		// new file writer - Mr. David's code for it
 		BufferedBitWriter writer = new BufferedBitWriter("compressed");
 		while ((i = reader.read())!= -1)
 		{
@@ -80,14 +90,14 @@ public class Compressor
 			character = (char) i;
 			String code = (String) binaryCodes.get(character);
 			
-			
+			// go through this code's each character
 			for (int j = 0; j < code.length(); j++)
 			{
 				boolean bit = false;
+				// take each char of the code
 				char firstDigit = code.charAt(j);
-				System.out.println("digit: "+ firstDigit + "_code: " + code);
 				
-				
+				// convert char's integer number into boolean
 				if (firstDigit == '0' && code.length() > 1)
 				{
 					bit = false;
@@ -97,16 +107,19 @@ public class Compressor
 					bit = true;
 				}
 				
-				System.out.println(bit);
+				// pass booleans to Mr. David's bit writer so it writes every bit
 				writer.writeBit(bit);
 			}
 		}
+		// close bit writer and file reader
 		writer.close();
 		reader.close();
 	}
 	
+	// create new file writer to have separate file of binary codes
 	BufferedWriter output = new BufferedWriter(new FileWriter("Codes"));
 	
+	// recursion to decompose the tree
 	public void recursion(Branch<Character> tree, String value) throws IOException
 	{
 		// key - characters
@@ -115,6 +128,7 @@ public class Compressor
 		// base case - leaf
 		if (tree.isLeaf == true)
 		{
+			// if leaf - pass each node's value into the file that will contain codes for each character
 			decompression(tree.info, value);
 			binaryCodes.put(tree.info, value);
 		}
@@ -126,7 +140,7 @@ public class Compressor
 	}
 	
 	
-	// working
+	// write codes for each character into a separate file
 	public void decompression(Character info, String value) throws IOException
 	{
 		 output.write(value + "\n");

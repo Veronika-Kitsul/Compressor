@@ -27,12 +27,14 @@ public class Decompressor {
 		int number = 0;
 		for (String line = in.readLine(); line != null; line = in.readLine())
 		{
+			// even numbered lines = codes, odd numbered = characters
 			if (number % 2 == 0)
 			{
 				keyCode = line;
 			}
 			else 
 			{
+				// put the value and it's code into the map
 				valueChar = line;
 				codeMap.put(keyCode, valueChar);
 			}
@@ -41,16 +43,19 @@ public class Decompressor {
 		in.close();
 		
 		
-		
+		// read through compressed file 
 		BufferedBitReader reader = new BufferedBitReader("compressed");
+		// write  new file
 		BufferedWriter output = new BufferedWriter(new FileWriter("Decompressed"));
 		String code = "";
 		
+		// go through the compressed text 
 		while (reader.hasNext() == true)
 		{
+			// code boolean 
 			Boolean codeBool = reader.readBit();
-			// so these booleans are incorrect because I get true-true-false-false-false, but i should get true-true-false-true-false
-			
+
+			// make a binary code
 			if (codeBool == true)
 			{
 				code = code + "1";
@@ -60,9 +65,11 @@ public class Decompressor {
 				code = code + "0";
 			}
 			
+			// if code exists = write it's corresponding char into the file
 			if (codeMap.get(code) != null)
 			{
 				output.write(codeMap.get(code));
+				// update the code
 				code = "";
 			}
 		}

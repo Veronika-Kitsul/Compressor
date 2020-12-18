@@ -14,6 +14,7 @@ public class PriorityQueue<E> {
 		return queue.toString();
 	}
 
+	// add element to the queue where it fits
 	public void add(int p, E i)
 	{
 		int priority = p;
@@ -56,11 +57,13 @@ public class PriorityQueue<E> {
 		}
 	}
 	
+	// remove node
 	public Node<E> pop()
 	{
 		return queue.remove(queue.size()-1);
 	}
 	
+	// size of the queue
 	public int size()
 	{
 		return queue.size();
