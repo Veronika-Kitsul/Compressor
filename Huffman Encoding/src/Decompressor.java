@@ -50,7 +50,6 @@ public class Decompressor {
 		{
 			Boolean codeBool = reader.readBit();
 			// so these booleans are incorrect because I get true-true-false-false-false, but i should get true-true-false-true-false
-			System.out.println(codeBool);
 			
 			if (codeBool == true)
 			{

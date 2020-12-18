@@ -83,18 +83,21 @@ public class Compressor
 			
 			for (int j = 0; j < code.length(); j++)
 			{
-				char LastDigit = code.charAt(code.length() - 1);
 				boolean bit = false;
-				if (LastDigit == '0')
+				char firstDigit = code.charAt(j);
+				System.out.println("digit: "+ firstDigit + "_code: " + code);
+				
+				
+				if (firstDigit == '0' && code.length() > 1)
 				{
 					bit = false;
 				}
-				else if (LastDigit == '1')
+				else if (firstDigit == '1')
 				{
 					bit = true;
 				}
 				
-				// testing works up until here where it is supposed to write bits into file
+				System.out.println(bit);
 				writer.writeBit(bit);
 			}
 		}
